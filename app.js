@@ -1,1 +1,1 @@
-console.log('Hello ProtoOut!');
+console.log('Bonjour ProtoOut! test test');
