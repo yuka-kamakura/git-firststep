@@ -20,7 +20,7 @@
 
             methods: {
                 getData: async function(){
-                    const response = await axios.get('data.json')
+                    const response = await axios.get('https://reststop.randomhouse.com/resources/works/72148')
                     console.log(response.data);
                     this.message = response.data
                 },
