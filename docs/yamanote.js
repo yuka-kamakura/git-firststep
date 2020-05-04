@@ -1,15 +1,3 @@
-'use strcit';
-
-const axios = require('axios');
-const fs = require('fs'); //注: npm i 不要
-
-//データ更新関数
-async function updateData(newData){
-    const PATH = './docs/data.json';
-    fs.writeFileSync(PATH, JSON.stringify(newData));
-}
-
-// 実際にデータを取得する getRequest 関数
 async function getRequest() {
   let response;
   try {
@@ -17,7 +5,6 @@ async function getRequest() {
     let html = response.data;
     html = html.replace(/\r?\n/g,""); //整形1: 改行などを削除して整形しやすくする
     let unko = html.match(/id="mdServiceStatus">(.*?)<\/div>/)[1];
-    unko = unko.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,''); //整形2: タグを削除
     console.log(unko);
 
     await updateData({msg: unko}); //データ更新関数を実行
@@ -25,6 +12,3 @@ async function getRequest() {
     console.error(error);
   }
 }
-
-// getRequest を呼び出してデータを読み込む
-getRequest();
